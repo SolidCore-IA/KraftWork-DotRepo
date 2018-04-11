@@ -1,0 +1,15 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Nord",
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "toggle",
+    "files.associations": {
+        "*.rasi": "shellscript",
+        "dunstrc": "shellscript",
+        ".Xresources": "shellscript"
+    },
+    "[properties]": {},
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.commandPalette.history": 40
+}

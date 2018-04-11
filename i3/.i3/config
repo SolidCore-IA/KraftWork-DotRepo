@@ -1,0 +1,256 @@
+# i3 config file (v4)
+#
+# .__________                      _____.__        
+# |__\_____  \  ____  ____   _____/ ____\__| ____  
+# |  | _(__  <_/ ___\/  _ \ /    \   __\|  |/ ___\ 
+# |  |/       \  \__(  <_> )   |  \  |  |  / /_/  >
+# |__/______  /\___  >____/|___|  /__|  |__\___  / 
+#           \/     \/           \/        /_____/
+#
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+#
+#
+#### NOTES
+# run :set ft=i3config to set syntax for i3config
+# CURRENT $MOD= ALT-1
+#
+#### CONFIG START 
+set $mod Mod1
+focus_follows_mouse no
+
+# I3 SYS FONT
+font pango:Ubuntu-R.ttf 9
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# kill focused window
+bindsym $mod+k kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec dmenu_run -i -l 5 -nb "#383C4A" -nf "#$clr-text" -sb "#BF4080" -p ">"
+bindsym $mod+d exec rofi -show drun
+
+# Move windows/ focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# switch between the current and the previously focused one
+bindsym $mod+t workspace back_and_forth
+bindsym $mod+Shift+t move container to workspace back_and_forth
+
+# toggle border
+bindsym $mod+b exec i3-msg border toggle
+
+# focus the parent container
+#bindsym $mod+a focus parent
+# focus the child container
+#bindsym $mod+d focus child
+
+# Workspace variables
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace10 "10 "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '??Logoff??' -b 'Yes, Log off' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# colors
+#
+# color codes for "arc dark"
+## TEXT
+set $clr-text #D3DAE3
+## BASE GREY
+set $clr-base #404552
+## ARC DARK
+set $clr-dark #383C4A
+## ARC BLACK
+set $clr-black #2F343F
+## ARC BLUE
+set $clr-blue #4084D6
+## ARC RED
+set $clr-red #E45E5E
+## PS4 BLUE
+set $clr-ps4 #003791
+## AMBER
+set $clr-amber #FFBF00
+## SET GREY
+set $clr-grey #686d79
+
+#<colorclass>              <border>       <background>      <text>      <indicate>    <child_border>
+client.focused              $clr-base      $clr-blue       $clr-text     $clr-amber     $clr-blue
+client.focused_inactive     $clr-base      $clr-dark       $clr-blue     $clr-base      $clr-dark
+client.unfocused            $clr-base      $clr-blue       $clr-text     $clr-base
+client.urgent               $clr-red       $clr-red        $clr-black    $clr-red
+
+###
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# i3status is defualt i3bar info ~/.config/i3status > i3blocks is a custom options ~/.i3/i3blocks.conf
+bar {
+#    font pango:Ubuntu-R.ttf 9
+#    status_command i3status
+    status_command i3blocks -c ~/.i3/i3blocks.conf
+    position top
+    colors {
+	    background $clr-base
+	    statusline $clr-text
+        #separator #
+#                            <border>    <background>    <text>
+	    focused_workspace    $clr-blue     $clr-blue     $clr-text
+	    active_workspace     $clr-blue     $clr-base     $clr-blue 
+	    inactive_workspace   $clr-base     $clr-base     $clr-text
+	    urgent_workspace     $clr-red      $clr-red      $clr-black
+    }
+}
+
+# SCRATCHPAD
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+##BELOW IS SPECIFIC COMMANDS TO CONTROL HOW WINDOWS OPEN/WORK
+# for_window <criteria> <command> 
+# get criteria @ xprop >> WM_CLASS(STRING) = "instance", "class"
+######
+new_window pixel 1
+for_window [window_role="pop-up"] floating enable
+floating_maximum_size 1000 x 700
+#hide_edge_borders none|vertical|horizontal|both|smart
+
+for_window [class="(?i)leafpad"] floating enable
+#for_window [title="Computer & Contacts"] floating enable
+for_window [class="TeamViewer"] floating enable
+for_window [title="Bluetooth Devices"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [window_role="Msgcompose"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Gpicview"] floating enable
+
+# window assignments to workspace
+assign [class="Evolution"] $workspace9
+assign [class="Rhythmbox"] $workspace10
+#assign [class="Pcmanfm"] $workspace3
+#assign [class="spotifywebplayer"] $workspace10
+
+##APPS TO AUTOSTART WITH i3
+exec --no-startup-id clipit
+exec --no-startup-id nm-applet
+exec_always nitrogen --restore
+#exec --no-startup-id icedove
+#exec --no-startup-id rhythmbox
+exec --no-startup-id blueman-applet
+exec --no-startup-id pasystray
+exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id wayk-now
+
+# X11vnc setup
+#exec --no-startup-id x11vnc -bg -nevershared -forever -rfbauth /home/manny/.config/x11vnc/passwd -display :0
+
+##MY CUSTOM KEYBOARD SHORTCUTS
+bindsym Print+shift exec scrot '%m-%d-%T_scrot.png' -e 'mv $f ~/Documents/scrots'
+bindsym Print exec scrot --focused '%m-%d-%T_scrot.png' -e 'mv $f ~/Documents/scrots'
+bindsym $mod+n exec --no-startup-id leafpad
+bindsym $mod+shift+n exec --no-startup-id google-chrome --profile-directory=Default --new-window
+bindsym $mod+c exec --no-startup-id gnome-calculator
+bindsym $mod+o exec --no-startup-id pcmanfm
+bindsym $mod+plus exec leafpad ~/Desktop/desk_notes
+#bindsym $mod+v exec --no-starup-id pavucontrol
+
+# Wallpaper variable
+set $wallpaper /home/manny/Pictures/wallpaper/wallpaper0.png
+bindsym --release $mod+Control+Shift+l exec i3lock -t -i $wallpaper
+bindsym --release $mod+Control+Shift+s exec i3lock -t -i $wallpaper && systemctl suspend
+exec --no-startup-id xautolock -time 15 -locker "i3lock -t -i $wallpaper"
+
+# vim:filetype=i3
