@@ -1,6 +1,0 @@
-exit
-Test-Connection 10.0.0.1
-cls
-ls ./Documents/
-cls
-exit
